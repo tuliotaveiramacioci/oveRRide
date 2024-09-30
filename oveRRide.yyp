@@ -34,12 +34,16 @@
   },
   "name":"oveRRide",
   "resources":[
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"obj_Collider","path":"objects/obj_Collider/obj_Collider.yy",},},
+    {"id":{"name":"obj_Player","path":"objects/obj_Player/obj_Player.yy",},},
+    {"id":{"name":"roo_Test","path":"rooms/roo_Test/roo_Test.yy",},},
+    {"id":{"name":"spr_Collider","path":"sprites/spr_Collider/spr_Collider.yy",},},
+    {"id":{"name":"spr_Player","path":"sprites/spr_Player/spr_Player.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"roo_Test","path":"rooms/roo_Test/roo_Test.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

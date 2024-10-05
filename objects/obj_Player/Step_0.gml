@@ -1,23 +1,23 @@
 #region movimentaçao + colisão + sprites
 
 
-// controles: para teclado
-var keyRight = keyboard_check(ord("D")) || keyboard_check(vk_right)
-var keyLeft	 = keyboard_check(ord("A")) || keyboard_check(vk_left)
-var keyDown	 = keyboard_check(ord("S")) || keyboard_check(vk_down)
-var keyUp	 = keyboard_check(ord("W")) || keyboard_check(vk_up)
+// controles: para teclado (wasd)
+var keyMoveRight = keyboard_check(ord("D"))
+var keyMoveLeft	 = keyboard_check(ord("A"))
+var keyMoveDown	 = keyboard_check(ord("S"))
+var keyMoveUp	 = keyboard_check(ord("W"))
 
 // direção do movimento: sentido para o plano cartesiano
-var moveX = keyRight - keyLeft
-var moveY = keyDown - keyUp
+var moveX = keyMoveRight - keyMoveLeft
+var moveY = keyMoveDown - keyMoveUp
 
 // executar lógica: mover se não colide, etc...
 if (moveX!=0 || moveY!=0) {
 	
 	// normalização do vetor: correção da velocidade nas diagonais
 	var range = point_distance(0, 0, moveX, moveY)
-	moveX = (moveX/range)*5
-	moveY = (moveY/range)*5
+	moveX = (moveX/range)*3
+	moveY = (moveY/range)*3
 
 	// horizontal
 	var newX = x+moveX
@@ -39,6 +39,25 @@ if (moveX!=0 || moveY!=0) {
     if      (sprite_index == spr_walk_back) sprite_index  = spr_idle_back
     else if (sprite_index == spr_walk_front) sprite_index = spr_idle_front
     else if (sprite_index == spr_walk_side) sprite_index  = spr_idle_side
+}
+
+
+#endregion
+
+#region tiro
+
+
+// definindo direção e teclas em arrays
+var directions = [90, 270, 180, 0]
+var keys = [vk_up, vk_down, vk_left, vk_right]
+
+// verificando cada elemento
+for (var i = 0; i < 4; i++) {
+	
+    // chamando script
+    var res = scr_shoot_bullet(keyboard_check_pressed(keys[i]), directions[i], fire_timer, fire_rate, ammo)
+    fire_timer = res[0];
+    ammo = res[1];
 }
 
 

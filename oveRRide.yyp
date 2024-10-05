@@ -34,6 +34,7 @@
   },
   "name":"oveRRide",
   "resources":[
+    {"id":{"name":"obj_Bullet","path":"objects/obj_Bullet/obj_Bullet.yy",},},
     {"id":{"name":"obj_Camera","path":"objects/obj_Camera/obj_Camera.yy",},},
     {"id":{"name":"obj_Collider","path":"objects/obj_Collider/obj_Collider.yy",},},
     {"id":{"name":"obj_Hole","path":"objects/obj_Hole/obj_Hole.yy",},},
@@ -41,6 +42,8 @@
     {"id":{"name":"roo_End","path":"rooms/roo_End/roo_End.yy",},},
     {"id":{"name":"roo_Level","path":"rooms/roo_Level/roo_Level.yy",},},
     {"id":{"name":"roo_Start","path":"rooms/roo_Start/roo_Start.yy",},},
+    {"id":{"name":"scr_shoot_bullet","path":"scripts/scr_shoot_bullet/scr_shoot_bullet.yy",},},
+    {"id":{"name":"spr_Bullet","path":"sprites/spr_Bullet/spr_Bullet.yy",},},
     {"id":{"name":"spr_Collider","path":"sprites/spr_Collider/spr_Collider.yy",},},
     {"id":{"name":"spr_Hole","path":"sprites/spr_Hole/spr_Hole.yy",},},
     {"id":{"name":"spr_PlayerIdleB","path":"sprites/spr_PlayerIdleB/spr_PlayerIdleB.yy",},},

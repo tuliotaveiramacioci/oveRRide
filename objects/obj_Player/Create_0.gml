@@ -13,3 +13,8 @@ spr_walk_side = spr_PlayerWalkS
 
 
 #endregion
+
+
+fire_rate = 60
+fire_timer = 0
+ammo = 5

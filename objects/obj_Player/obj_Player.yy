@@ -31,12 +31,9 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_PlayerIdleF",
-    "path":"sprites/spr_PlayerIdleF/spr_PlayerIdleF.yy",
+    "name":"spr_Player",
+    "path":"sprites/spr_Player/spr_Player.yy",
   },
-  "spriteMaskId":{
-    "name":"spr_PlayerIdleF",
-    "path":"sprites/spr_PlayerIdleF/spr_PlayerIdleF.yy",
-  },
+  "spriteMaskId":null,
   "visible":true,
 }

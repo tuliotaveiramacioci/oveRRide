@@ -1,20 +1,24 @@
-#region sprites
+#region movimentação e colisão
 
 
-// parado
-spr_idle_back = spr_PlayerIdleB
-spr_idle_front = spr_PlayerIdleF
-spr_idle_side = spr_PlayerIdleS
-
-// andando
-spr_walk_back = spr_PlayerWalkB
-spr_walk_front = spr_PlayerWalkF
-spr_walk_side = spr_PlayerWalkS
+	// controle
+	moveKey = ["W","A","S","D"]
 
 
 #endregion
 
+#region tiro
 
-fire_rate = 60
-fire_timer = 0
-ammo = 5
+
+	// controle
+	shootKey = [vk_right, vk_up, vk_left, vk_down]
+
+	// munição
+	shootAmmo = 17
+
+	// temporizador
+	shootCooldown = 0
+	shootDelay = 30
+
+
+#endregion

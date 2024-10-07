@@ -1,45 +1,26 @@
-#region movimentaçao + colisão + sprites
+#region movimentação e colisão
 
 
-// controles: para teclado (wasd)
-var keyMoveRight = keyboard_check(ord("D"))
-var keyMoveLeft	 = keyboard_check(ord("A"))
-var keyMoveDown	 = keyboard_check(ord("S"))
-var keyMoveUp	 = keyboard_check(ord("W"))
+	// sentido do movimento: direção no plano cartesiano
+	var moveX = keyboard_check(ord(moveKey[3]))-keyboard_check(ord(moveKey[1]))
+	var moveY = keyboard_check(ord(moveKey[2]))-keyboard_check(ord(moveKey[0]))
 
-// direção do movimento: sentido para o plano cartesiano
-var moveX = keyMoveRight - keyMoveLeft
-var moveY = keyMoveDown - keyMoveUp
-
-// executar lógica: mover se não colide, etc...
-if (moveX!=0 || moveY!=0) {
+	if (moveX!=0 or moveY!=0) {
 	
-	// normalização do vetor: correção da velocidade nas diagonais
-	var range = point_distance(0, 0, moveX, moveY)
-	moveX = (moveX/range)*3
-	moveY = (moveY/range)*3
+		// normalização do vetor: correção da velocidade nas diagonais
+		var moveRange = point_distance(0, 0, moveX, moveY)
+		moveX /= moveRange
+		moveY /= moveRange
 
-	// horizontal
-	var newX = x+moveX
-	if (!place_meeting(newX, y, obj_Collider)) x = newX
-	else while (!place_meeting(x+sign(moveX), y, obj_Collider)) x += sign(moveX)
+		// horizontal: x
+		if (!place_meeting(x+moveX, y, obj_Collider)) x = x+moveX
+		else while (!place_meeting(x+sign(moveX), y, obj_Collider)) x += sign(moveX)
 
-	// vertical
-	var newY = y+moveY
-	if (!place_meeting(x, newY, obj_Collider)) y = newY
-	else while (!place_meeting(x, y+sign(moveY), obj_Collider)) y += sign(moveY)
+		// vertical: y
+		if (!place_meeting(x, y+moveY, obj_Collider)) y = y+moveY
+		else while (!place_meeting(x, y+sign(moveY), obj_Collider)) y += sign(moveY)
 
-    // sprites: em movimento
-    if	    (moveY < 0)  sprite_index = spr_walk_back
-    else if (moveY > 0)  sprite_index = spr_walk_front
-    else if (moveX != 0) sprite_index = spr_walk_side image_xscale = (moveX<0)?-1:1
-} else {
-	
-	// sprites: em repouso
-    if      (sprite_index == spr_walk_back) sprite_index  = spr_idle_back
-    else if (sprite_index == spr_walk_front) sprite_index = spr_idle_front
-    else if (sprite_index == spr_walk_side) sprite_index  = spr_idle_side
-}
+	}
 
 
 #endregion
@@ -47,18 +28,29 @@ if (moveX!=0 || moveY!=0) {
 #region tiro
 
 
-// definindo direção e teclas em arrays
-var directions = [90, 270, 180, 0]
-var keys = [vk_up, vk_down, vk_left, vk_right]
+	if (shootCooldown<=0 and shootAmmo>0) {
 
-// verificando cada elemento
-for (var i = 0; i < 4; i++) {
-	
-    // chamando script
-    var res = scr_shoot_bullet(keyboard_check_pressed(keys[i]), directions[i], fire_timer, fire_rate, ammo)
-    fire_timer = res[0];
-    ammo = res[1];
-}
+	    // sentido do movimento: direção no plano cartesiano
+		var shootX = keyboard_check(shootKey[0])-keyboard_check(shootKey[2]);
+		var shootY = keyboard_check(shootKey[3])-keyboard_check(shootKey[1]);
+
+
+	    if (shootX!=0 or shootY!=0) {
+			
+	        // determina a direção: inclui diagonais
+	        var shootAngle = point_direction(0, 0, shootX, shootY);
+		
+			// efetua o tiro: gera objeto e ajusta dados
+			var shootBullet = instance_create_layer(x, y, "Instances", obj_Bullet)
+			shootBullet.direction = shootAngle
+			shootBullet.image_angle = shootAngle
+			shootAmmo--
+	        shootCooldown = shootDelay;
+	    }
+	}
+
+	// intervalo entre disparos: 30 frames (1/2 segundo)
+	if (shootCooldown>0) shootCooldown--
 
 
 #endregion

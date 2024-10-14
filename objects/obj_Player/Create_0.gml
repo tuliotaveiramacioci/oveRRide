@@ -1,3 +1,19 @@
+#region dados
+
+
+	// máquina de estados: parado, andando, etc...
+	enum stateMachine {
+		Idle,
+		Move,
+		MoveShoot,
+		Shoot
+	}
+	playerState = stateMachine.Idle
+
+
+
+#endregion
+
 #region movimentação e colisão
 
 
